@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from .models import TodoItem
 
 
-def homeView(request):
+def todoView(request):
     items = TodoItem.objects.all()
     context = {
         'items': items

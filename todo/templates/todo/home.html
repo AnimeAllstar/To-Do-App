@@ -1,0 +1,17 @@
+<ul>
+    {% for item in items %}
+    <li style="margin:10px;">
+        {{item.content}}
+        <form action="/deleteItem/{{item.id}}/" style="display: inline;" method="POST">
+            {% csrf_token%}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+
+<form action="/addItem/" method="POST">
+    {% csrf_token%}
+    <input type="text" name="content">
+    <button type="submit">Add</button>
+</form>
