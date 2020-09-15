@@ -8,7 +8,7 @@ def todoView(request):
     context = {
         'items': items
     }
-    return render(request, 'home.html', context)
+    return render(request, 'todo/home.html', context)
 
 
 def addItem(request):
