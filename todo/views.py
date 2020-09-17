@@ -2,11 +2,12 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .models import TodoItem
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.models import User
 
 @login_required
 def todoView(request):
-    items = TodoItem.objects.all()
+    u = User.objects.get(username=request.user)
+    items = u.item.all()
     context = {
         'items': items
     }
@@ -15,7 +16,7 @@ def todoView(request):
 
 @login_required
 def addItem(request):
-    newItem = TodoItem(content=request.POST['content'])
+    newItem = TodoItem(content=request.POST['content'],user=request.user)
     newItem.save()
     return HttpResponseRedirect("/")
 
