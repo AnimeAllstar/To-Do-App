@@ -23,16 +23,3 @@ body {
 body {
   font-family: sans-serif;
 }
-
-.flex-container{
-	display:flex;
-	flex-wrap:wrap;
-	justify-content:center;
-}
-
-.flex-container div{
-	text-align:center;
-	width:15rem;
-  height:10rem;
-}
-
