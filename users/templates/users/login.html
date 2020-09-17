@@ -1,0 +1,39 @@
+{% extends "todo/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div style="height: 100vh">
+    <div class="row h-100 justify-content-center">
+        <div class="col-md-5 mx-2 my-auto">
+
+            <!--Messages-->
+            {% if messages %}
+            {% for message in messages %}
+            {% include "todo/message.html" %}
+            {% endfor %}
+            {% endif %}
+            
+            <div class="card">
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <fieldset class="form-group">
+                            <legend class="border-bottom mb-4">Log In</legend>
+                            {{ form|crispy }}
+                        </fieldset>
+                        <div class="form-group">
+                            <button class="btn btn-outline-primary" type="submit">Login</button>
+                        </div>
+                    </form>
+                    <div class="border-top pt-3">
+                        <small class="text-muted">
+                            Need an account? <a href="{% url 'register' %}" class="ml-1">Sign Up Now</a>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content%}

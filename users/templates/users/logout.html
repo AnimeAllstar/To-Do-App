@@ -1,0 +1,22 @@
+{% extends "todo/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div style="height: 100vh">
+    <div class="row h-100 justify-content-center">
+        <div class="col-md-3 mx-2 my-auto">
+            <div class="card">
+                <div class="card-body">
+                    <legend class="border-bottom">You have been logged out</legend>
+                    <div class="pt-1">
+                        <small class="text-muted">
+                            <a href="{% url 'login' %}" class="ml-1">Log In Again</a>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content%}
