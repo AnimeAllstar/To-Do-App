@@ -4,3 +4,35 @@ body {
   max-width: 100%;
   overflow-x: hidden;
 }
+
+.list-group-item {
+  color: var(--primary);
+}
+
+.list-group-item:hover {
+  color: black;
+  background-color: #fafafa;
+}
+
+.list-group a {
+  text-decoration: none !important;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: sans-serif;
+}
+
+.flex-container{
+	display:flex;
+	flex-wrap:wrap;
+	justify-content:center;
+}
+
+.flex-container div{
+	text-align:center;
+	width:15rem;
+  height:10rem;
+}
+

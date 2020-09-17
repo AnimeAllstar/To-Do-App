@@ -1,8 +1,10 @@
 <div class="card">
-    <div class="card-body">
-        <h5 class="card-title">Menu</h5>
+    <h5 class="card-header"> Menu </h5>
+    <div class="card-body p-0">
+        <ul class="list-group list-group-flush">
+            <a href="{% url 'logout' %}">
+                <li class="list-group-item border-0">Logout</li>
+            </a>
+        </ul>
     </div>
-    <ul class="list-group list-group-flush">
-        <a href="{% url 'logout' %}"><li class="list-group-item">Logout</li></a>
-    </ul>
 </div>
