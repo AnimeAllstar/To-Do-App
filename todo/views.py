@@ -4,6 +4,7 @@ from .models import TodoItem
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
+
 @login_required
 def todoView(request):
     u = User.objects.get(username=request.user)
@@ -16,8 +17,9 @@ def todoView(request):
 
 @login_required
 def addItem(request):
-    newItem = TodoItem(content=request.POST['content'],user=request.user)
-    newItem.save()
+    if request.method == 'POST':
+        newItem = TodoItem(content=request.POST['content'], user=request.user)
+        newItem.save()
     return HttpResponseRedirect("/")
 
 
