@@ -3,14 +3,14 @@ from django.http import HttpResponseRedirect
 from .models import TodoItem
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from .models import TodoList, TodoItem
 
 
 @login_required
 def todoView(request):
-    u = User.objects.get(username=request.user)
-    items = u.item.all()
+    lists = TodoList.objects.all().filter(creator=request.user)
     context = {
-        'items': items
+        'lists': lists,
     }
     return render(request, 'todo/home.html', context)
 

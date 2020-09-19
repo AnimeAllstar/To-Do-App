@@ -29,11 +29,13 @@
             </div>
         </form>
         <div class="card-columns">
-            {% for item in items %}
+            {% for list in lists %}
             <div class="card mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">{{item.content|safe}}</h5>
-                    <p class="card-text"></p>
+                    <h5 class="card-title">{{list.title|safe}}</h5>
+                    {% for item in list.todo_item.all %}
+                    <p class="card-text">{{item.content}}</p>
+                    {% endfor %}
                     <form action="/deleteItem/{{item.id}}/" style="display: inline;" method="POST">
                         {% csrf_token%}
                         <button class="btn btn-outline-primary" type="submit">Delete</button>
