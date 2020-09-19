@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 {% block content %}
 
 <div class="row justify-content-center mt-4">
@@ -6,37 +7,99 @@
     <!--Sidebar-->
     <div class="col-md-3 mb-3 px-4">
         <div class="card">
-            <h5 class="card-header"> {{ user }}'s To Do List </h5>
+            <h5 class="card-header">{{ user }}</h5>
             <div class="card-body p-0">
                 <ul class="list-group list-group-flush">
+                    <li class="list-group-item border-0 artificial-link" data-toggle="modal"
+                        data-target="#addListModal">Create List</li>
+                    <li class="list-group-item border-0 artificial-link" data-toggle="modal"
+                        data-target="#addItemModal">Add Item</li>
                     <a class="artificial-link" href="{% url 'logout' %}">
                         <li class="list-group-item border-0">Logout</li>
                     </a>
-                    <li class="list-group-item border-0 artificial-link">Add Item</li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <!--Main-->
+    <!-- Add List Modal -->
+    <div class="modal fade" id="addListModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create new list</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <fieldset class="form-group">
+                            {{ list_form|crispy }}
+                        </fieldset>
+                        <div class="form-group">
+                            <button name="create_list" class="btn btn-outline-primary" type="submit">Create</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- Add item Modal -->
+    <div class="modal fade" id="addItemModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add new Item</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <fieldset class="form-group">
+                            {{ item_form|crispy }}
+                        </fieldset>
+                        <div class="form-group">
+                            <button name="add_item" class="btn btn-outline-primary" type="submit">Create</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Main-->
     <div class="col-md-6 px-4">
         <form class="mx-auto form-inline input-group mb-4" action="{% url 'add-list' %}" method="POST">
             {% csrf_token%}
-            <input class="form-control" type="text" placeholder="Add A List" name="title">
+            <input class="form-control" type="text" placeholder="Search" name="title">
             <div class="input-group-append">
-                <button class="btn btn-outline-primary" type="submit">Add</button>
+                <button class="btn btn-outline-primary" type="submit" disabled>Search</button>
             </div>
         </form>
         <div class="card-columns">
             {% for list in lists %}
             <div class="card mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">{{list.title|safe}}</h5>
+                    <h5 class="card-title">
+                        {{list.title|safe}}
+                    </h5>
+                    <p class="text-primary">
+                        {% if list.description != null %}
+                        {{list.description|safe}}
+                        {% endif %}
+                    </p>
                     {% for item in list.todo_item.all %}
-                    <p class="card-text">{{item.content}}</p>
+                    <p class="text-muted">
+                        {{item.content}}
+                    </p>
                     {% endfor %}
-                    <form action="{% url 'delete-list' list.id%}" style="display: inline;" method="POST">
+                    <button type="button" class="d-inline btn btn-outline-primary">Edit</button>
+                    <form class="d-inline" action="{% url 'delete-list' list.id%}" method="POST">
                         {% csrf_token%}
                         <button class="btn btn-outline-primary" type="submit">Delete</button>
                     </form>

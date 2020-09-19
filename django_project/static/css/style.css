@@ -45,3 +45,7 @@ body {
       column-count: 2;
   }
 }
+
+.close:focus {
+  outline: none !important;
+}
