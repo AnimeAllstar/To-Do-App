@@ -21,9 +21,9 @@
     <!--Main-->
 
     <div class="col-md-6 px-4">
-        <form class="mx-auto form-inline input-group mb-4" action="{% url 'add-item' %}" method="POST">
+        <form class="mx-auto form-inline input-group mb-4" action="{% url 'add-list' %}" method="POST">
             {% csrf_token%}
-            <input class="form-control" type="text" placeholder="Add A Task" name="content">
+            <input class="form-control" type="text" placeholder="Add A List" name="title">
             <div class="input-group-append">
                 <button class="btn btn-outline-primary" type="submit">Add</button>
             </div>
@@ -36,7 +36,7 @@
                     {% for item in list.todo_item.all %}
                     <p class="card-text">{{item.content}}</p>
                     {% endfor %}
-                    <form action="/deleteItem/{{item.id}}/" style="display: inline;" method="POST">
+                    <form action="{% url 'delete-list' list.id%}" style="display: inline;" method="POST">
                         {% csrf_token%}
                         <button class="btn btn-outline-primary" type="submit">Delete</button>
                     </form>

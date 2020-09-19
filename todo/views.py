@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from .models import TodoItem
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import TodoList, TodoItem
@@ -16,15 +15,15 @@ def todoView(request):
 
 
 @login_required
-def addItem(request):
+def addList(request):
     if request.method == 'POST':
-        newItem = TodoItem(content=request.POST['content'], user=request.user)
-        newItem.save()
+        newList = TodoList(title=request.POST['title'], creator=request.user)
+        newList.save()
     return HttpResponseRedirect("/")
 
 
 @login_required
-def deleteItem(request, itemId):
-    temp = TodoItem.objects.get(id=itemId)
+def deleteList(request, itemId):
+    temp = TodoList.objects.get(id=itemId)
     temp.delete()
     return HttpResponseRedirect("/")
