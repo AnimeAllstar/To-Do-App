@@ -46,6 +46,30 @@ body {
   }
 }
 
+.star-wrapper{
+  float: right;
+}
+
 .close:focus {
   outline: none !important;
+}
+
+.custom-btn {
+  transition: font-size 0.075s, color 0.1s;;
+}
+
+.custom-btn:hover{
+  font-size: 17.5px;
+}
+
+.starred {
+  color: #ffe216;
+}
+
+.starred:hover {
+  color: rgba(255, 226, 22, 0.75);
+}
+
+.unstarred {
+  color: var(--secondary);
 }

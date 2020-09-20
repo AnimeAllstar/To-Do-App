@@ -94,11 +94,19 @@
                         {% endif %}
                     </p>
                     {% for item in list.todo_item.all %}
-                    <p class="text-muted">
-                        {{item.content}}
+                    <p>
+                        <span class="text-muted">{{item.content}}</span>
+                        {% if item.isFlagged %}
+                        <a class="star-wrapper" href="#" data-id="{{ item.id }}">
+                            <i class="custom-btn fas fa-star starred" onclick="toggleClass(this)"></i>
+                        </a>
+                        {% else %}
+                        <a class="star-wrapper" href="#" data-id="{{ item.id }}">
+                            <i class="custom-btn far fa-star unstarred" onclick="toggleClass(this)"></i>
+                        </a>
+                        {% endif %}
                     </p>
                     {% endfor %}
-                    <button type="button" class="d-inline btn btn-outline-primary">Edit</button>
                     <form class="d-inline" action="{% url 'delete-list' list.id%}" method="POST">
                         {% csrf_token%}
                         <button class="btn btn-outline-primary" type="submit">Delete</button>

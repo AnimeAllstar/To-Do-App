@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import TodoList, TodoItem
@@ -47,3 +47,18 @@ def deleteList(request, itemId):
     temp = TodoList.objects.get(id=itemId)
     temp.delete()
     return HttpResponseRedirect("/")
+
+
+@login_required
+def starView(request):
+    if request.method == 'GET':
+        item_id = request.GET['item_id']
+        starred_item = get_object_or_404(TodoItem, pk=item_id)
+        if starred_item.isFlagged:
+            starred_item.isFlagged = False
+        else:
+            starred_item.isFlagged = True
+        starred_item.save()
+        return HttpResponse("Success!")
+    else:
+        return HttpResponse("Request method is not a GET")
