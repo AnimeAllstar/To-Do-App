@@ -27,7 +27,7 @@ SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
 
 ALLOWED_HOSTS = ['django-asad.herokuapp.com', '127.0.0.1']
 
