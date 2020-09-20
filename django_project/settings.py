@@ -23,10 +23,10 @@ SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '&cz^_%15l^mj*7$irz(_@1!p@$1xz)=xzd!%*=4r1aquhy(b_^'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['django-asad.herokuapp.com', '127.0.0.1']
 
