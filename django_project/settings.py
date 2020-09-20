@@ -26,9 +26,9 @@ SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 SECRET_KEY = '&cz^_%15l^mj*7$irz(_@1!p@$1xz)=xzd!%*=4r1aquhy(b_^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['django-asad.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
