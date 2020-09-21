@@ -12,6 +12,20 @@ $('.star-wrapper').click(function (e) {
         })
 });
 
+$('.check-wrapper').click(function (e) {
+    e.preventDefault();
+    var id;
+    id = $(this).attr("data-id");
+    $.ajax(
+        {
+            type: "GET",
+            url: "/check",
+            data: {
+                item_id: id
+            }
+        })
+});
+
 function toggleClass(star_btn) {
     if (star_btn.classList.contains("starred")) {
         star_btn.classList.remove("starred", "fas");
@@ -19,6 +33,16 @@ function toggleClass(star_btn) {
     } else if (star_btn.classList.contains("unstarred")) {
         star_btn.classList.remove("unstarred", "far");
         star_btn.classList.add("starred", "fas");
+    }
+}
+
+function toggleClick(radio_btn) {
+    if (radio_btn.classList.contains("fa-check-square")) {
+        radio_btn.classList.remove("fa-check-square", "fas");
+        radio_btn.classList.add("fa-square", "far");
+    } else if (radio_btn.classList.contains("fa-square")) {
+        radio_btn.classList.remove("fa-square", "far");
+        radio_btn.classList.add("fa-check-square", "fas");
     }
 }
 

@@ -62,3 +62,18 @@ def starView(request):
         return HttpResponse("Success!")
     else:
         return HttpResponse("Request method is not a GET")
+
+
+@login_required
+def checkView(request):
+    if request.method == 'GET':
+        item_id = request.GET['item_id']
+        checked_item = get_object_or_404(TodoItem, pk=item_id)
+        if checked_item.isCompleted:
+            checked_item.isCompleted = False
+        else:
+            checked_item.isCompleted = True
+        checked_item.save()
+        return HttpResponse("Success!")
+    else:
+        return HttpResponse("Request method is not a GET")

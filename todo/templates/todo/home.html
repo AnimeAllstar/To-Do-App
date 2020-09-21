@@ -95,7 +95,6 @@
                     </p>
                     {% for item in list.todo_item.all %}
                     <p>
-                        <span class="text-muted">{{item.content}}</span>
                         {% if item.isFlagged %}
                         <a class="star-wrapper" href="#" data-id="{{ item.id }}">
                             <i class="custom-btn fas fa-star starred" onclick="toggleClass(this)"></i>
@@ -105,6 +104,18 @@
                             <i class="custom-btn far fa-star unstarred" onclick="toggleClass(this)"></i>
                         </a>
                         {% endif %}
+
+                        {% if item.isCompleted %}
+                        <a class="check-wrapper" href="#" data-id="{{ item.id }}">
+                            <i class="custom-btn fas fa-check-square" onclick="toggleClick(this)"></i>
+                        </a>
+                        {% else %}
+                        <a class="check-wrapper" href="#" data-id="{{ item.id }}">
+                            <i class="custom-btn far fa-square" onclick="toggleClick(this)"></i>
+                        </a>
+                        {% endif %}
+
+                        <span class="text-muted">{{item.content}}</span>
                     </p>
                     {% endfor %}
                     <form class="d-inline" action="{% url 'delete-list' list.id%}" method="POST">

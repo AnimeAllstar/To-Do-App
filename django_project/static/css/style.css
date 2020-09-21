@@ -73,3 +73,8 @@ body {
 .unstarred {
   color: var(--secondary);
 }
+
+.check-wrapper{
+  float: left;
+  padding-right: 5px;
+}
