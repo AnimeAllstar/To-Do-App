@@ -37,12 +37,15 @@ function toggleClass(star_btn) {
 }
 
 function toggleClick(radio_btn) {
+    var item = document.getElementById(`i-${radio_btn.id}`);
     if (radio_btn.classList.contains("fa-check-square")) {
         radio_btn.classList.remove("fa-check-square", "fas");
+        item.classList.remove("completed");
         radio_btn.classList.add("fa-square", "far");
     } else if (radio_btn.classList.contains("fa-square")) {
         radio_btn.classList.remove("fa-square", "far");
         radio_btn.classList.add("fa-check-square", "fas");
+        item.classList.add("completed");
     }
 }
 

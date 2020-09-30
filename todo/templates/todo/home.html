@@ -100,15 +100,16 @@
 
                         {% if item.isCompleted %}
                         <a class="check-wrapper" href="#" data-id="{{ item.id }}">
-                            <i class="custom-btn fas fa-check-square" onclick="toggleClick(this)"></i>
+                            <i id="{{ item.id }}" class="custom-btn fas fa-check-square"
+                                onclick="toggleClick(this)"></i>
                         </a>
+                        <span id="i-{{ item.id }}" class="completed text-muted">{{item.content}}</span>
                         {% else %}
                         <a class="check-wrapper" href="#" data-id="{{ item.id }}">
-                            <i class="custom-btn far fa-square" onclick="toggleClick(this)"></i>
+                            <i id="{{ item.id }}" class="custom-btn far fa-square" onclick="toggleClick(this)"></i>
                         </a>
+                        <span id="i-{{ item.id }}" class="text-muted">{{item.content}}</span>
                         {% endif %}
-
-                        <span class="text-muted">{{item.content}}</span>
                     </p>
                     {% endfor %}
                     <form class="d-inline" action="{% url 'delete-list' list.id%}" method="POST">
