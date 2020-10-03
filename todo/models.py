@@ -1,4 +1,5 @@
 from django.db import models
+import datetime
 from django.contrib.auth.models import User
 
 
@@ -19,7 +20,10 @@ class TodoItem(models.Model):
     content = models.CharField(max_length=100)
     isFlagged = models.BooleanField(default=False)
     isCompleted = models.BooleanField(default=False)
-    # https://lh3.googleusercontent.com/defIipZiAF5d1UYgOmxrb-0CJ3-8XojdI0nZ6O9Z2DBq8GLHgFq7iph8M2Xw78FTgHE=w1536-h674-rw
+    deadline = models.DateField()
 
     def __str__(self):
         return self.content
+
+    class Meta:
+        ordering = ['deadline']  # ['-deadline'] for descending

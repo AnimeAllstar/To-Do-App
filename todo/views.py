@@ -9,13 +9,13 @@ from .forms import ListCreateForm, ItemCreateForm
 @login_required
 def todoView(request):
     if request.method == 'POST':
+        item_form = ItemCreateForm(request.user, request.POST)
+        list_form = ListCreateForm(request.POST)
         if 'add_item' in request.POST:
-            item_form = ItemCreateForm(request.user, request.POST)
             if item_form.is_valid():
                 item_form.save()
                 return redirect('todo-home')
         elif 'create_list' in request.POST:
-            list_form = ListCreateForm(request.POST)
             if list_form.is_valid():
                 temp_list = list_form.save(commit=False)
                 temp_list.creator = User.objects.get(
