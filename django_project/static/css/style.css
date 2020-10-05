@@ -71,7 +71,7 @@ body {
 }
 
 .unstarred {
-  color: var(--secondary);
+  color: #999999;
 }
 
 .check-wrapper{
@@ -82,4 +82,16 @@ body {
 .completed{
   text-decoration:line-through; 
   text-decoration-color: red;
+}
+
+.trash-btn{
+  color: #999999;
+}
+
+.trash-btn:hover{
+  color: var(--primary); 
+}
+
+.trash-btn:focus{
+  box-shadow: none !important; 
 }

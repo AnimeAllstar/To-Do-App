@@ -82,6 +82,11 @@
             <div class="card mb-3">
                 <div class="card-body">
                     <h5 class="card-title">
+                        <form class="float-right" action="{% url 'delete-list' list.id%}" method="POST">
+                            {% csrf_token%}
+                            <button class="p-0 custom-btn trash-btn btn" type="submit"> <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </form>
                         {{list.title|safe}}
                     </h5>
                     <p class="text-primary">
@@ -115,10 +120,6 @@
                         {% endif %}
                     </p>
                     {% endfor %}
-                    <form class="d-inline" action="{% url 'delete-list' list.id%}" method="POST">
-                        {% csrf_token%}
-                        <button class="btn btn-outline-primary" type="submit">Delete</button>
-                    </form>
                 </div>
             </div>
             {% endfor %}
