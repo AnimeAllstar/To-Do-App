@@ -37,6 +37,7 @@ ALLOWED_HOSTS = ['django-asad.herokuapp.com', '127.0.0.1']
 INSTALLED_APPS = [
     'todo.apps.TodoConfig',
     'users.apps.UsersConfig',
+    'connections.apps.ConnectionsConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
