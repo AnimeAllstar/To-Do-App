@@ -1,25 +1,11 @@
-$('.star-wrapper').click(function (e) {
+$('.star-wrapper, .check-wrapper').click(function (e) {
     e.preventDefault();
-    var id;
-    id = $(this).attr("data-id");
+    var id = $(this).attr("data-id");
+    var urlName = $(this).attr('class').replace(/-.*/, '');
     $.ajax(
         {
             type: "GET",
-            url: "/star",
-            data: {
-                item_id: id
-            }
-        })
-});
-
-$('.check-wrapper').click(function (e) {
-    e.preventDefault();
-    var id;
-    id = $(this).attr("data-id");
-    $.ajax(
-        {
-            type: "GET",
-            url: "/check",
+            url: "/" + urlName,
             data: {
                 item_id: id
             }
@@ -30,7 +16,7 @@ function toggleClass(star_btn) {
     if (star_btn.classList.contains("starred")) {
         star_btn.classList.remove("starred", "fas");
         star_btn.classList.add("unstarred", "far");
-    } else if (star_btn.classList.contains("unstarred")) {
+    } else {
         star_btn.classList.remove("unstarred", "far");
         star_btn.classList.add("starred", "fas");
     }
@@ -42,7 +28,7 @@ function toggleClick(radio_btn) {
         radio_btn.classList.remove("fa-check-square", "fas");
         item.classList.remove("completed");
         radio_btn.classList.add("fa-square", "far");
-    } else if (radio_btn.classList.contains("fa-square")) {
+    } else {
         radio_btn.classList.remove("fa-square", "far");
         radio_btn.classList.add("fa-check-square", "fas");
         item.classList.add("completed");
