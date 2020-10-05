@@ -6,4 +6,5 @@ urlpatterns = [
     path('u/', include('users.urls')),
     path('', include('todo.urls')),
     path('todo/', include('todo.urls')),
+    path('connections/', include('connections.urls')),
 ]

@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def connectionView(request):
+    return render(request, 'connections/main.html')
