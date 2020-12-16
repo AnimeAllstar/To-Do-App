@@ -81,7 +81,7 @@ body {
 
 .completed{
   text-decoration:line-through; 
-  text-decoration-color: red;
+  text-decoration-color: var(--danger);
 }
 
 .trash-btn{
@@ -89,7 +89,7 @@ body {
 }
 
 .trash-btn:hover{
-  color: var(--primary); 
+  color: var(--danger); 
 }
 
 .trash-btn:focus{
